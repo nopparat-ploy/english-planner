@@ -46,7 +46,7 @@ english-planner/
 ต้องมี [Node.js](https://nodejs.org/) เวอร์ชัน 22.13 ขึ้นไป (แนะนำ 22 LTS หรือ 24)
 
 ```bash
-git clone <ลิงก์ repository นี้>
+git clone https://github.com/nopparat-ploy/english-planner.git
 cd english-planner
 npm install
 ```
