@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>English Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Patrick+Hand&family=Mali:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="planner">
+    <!-- หน้าซ้าย -->
+    <aside class="page page-left">
+      <div class="pin-sticker">
+        <span>I AM<br>HERE</span>
+        <svg viewBox="0 0 24 24" width="30" height="30"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      </div>
+
+      <h3 class="side-title">today's plan</h3>
+      <ul class="lined" id="todo">
+        <li><label><input type="checkbox"> review 5 words</label></li>
+        <li><label><input type="checkbox"> read 1 grammar note</label></li>
+        <li class="boxed blue"><label><input type="checkbox"> flashcard sesh</label></li>
+        <li><label><input type="checkbox"> take a quiz</label></li>
+        <li class="boxed yellow"><label><input type="checkbox"> add new words</label></li>
+        <li><label><input type="checkbox"> speak out loud!</label></li>
+      </ul>
+
+      <div class="side-sticker">TODAY, I WILL<br>USE ALL<br>THE TABS.</div>
+      <div class="signature">© ENGLISH PLANNER</div>
+    </aside>
+
+    <!-- หน้าขวา -->
+    <main class="page page-right dotted">
+      <div class="banner">IELTS SPACE OF INFINITE VOCABULARY<sup>®</sup></div>
+
+      <!-- HOME -->
+      <section class="view active" id="view-home">
+        <div class="grid-2">
+          <div class="post-sticker">
+            <div class="post-bar"><span>🔒</span><span class="squiggle">~ꩰ~</span><span>⚠</span></div>
+            <div class="post-head"><span class="dot"></span> word of the day</div>
+            <div class="post-body" id="wotd">
+              <div class="wotd-word">…</div>
+              <div class="wotd-mean"></div>
+            </div>
+            <div class="post-foot" id="wotdExample"></div>
+          </div>
+
+          <div class="stack">
+            <div class="card pale-blue big-text">
+              TODAY, I WILL<br>LEARN <span class="pill" id="goalNum">5</span> WORDS<br>
+              ON <span class="underline">english ✏️</span>
+            </div>
+            <div class="card yellow center">
+              I WILL REWARD<br>MYSELF WITH:
+              <div class="white-pill" contenteditable="true" spellcheck="false">bubble tea 🧋</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="stack">
+            <div class="got-this">
+              <span class="doodle d1">ꩰ</span><span class="doodle d2">ಌ</span>
+              I GOT THIS.
+            </div>
+            <div class="notes">
+              <h3>where i'm at</h3>
+              <ul id="statList"></ul>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="card navy">
+              <div class="me-head"><span class="avatar">😊</span><div>Myself<br><small>@anotetoself</small></div></div>
+              <p class="me-text">I am on the right path.</p>
+            </div>
+            <div class="notes">
+              <h3>recent quizzes</h3>
+              <ul id="quizHistory"><li>ยังไม่มีผลควิซ</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORDS -->
+      <section class="view" id="view-words">
+        <div class="grid-words">
+          <div class="spiral-card">
+            <div class="rings"></div>
+            <div class="spiral-tabs"><span>Word</span><span>Mean</span><span>Use</span></div>
+            <h2 class="card-title" id="wordFormTitle">New Word</h2>
+            <form id="wordForm" autocomplete="off">
+              <input type="hidden" name="id">
+              <input class="field" name="word" placeholder="WORD" required>
+              <input class="field" name="meaning" placeholder="ความหมาย" required>
+              <div class="radio-row">
+                <label><input type="radio" name="level" value="easy" checked> easy</label>
+                <label><input type="radio" name="level" value="medium"> medium</label>
+                <label><input type="radio" name="level" value="hard"> hard</label>
+              </div>
+              <select class="field" name="part_of_speech">
+                <option>noun</option><option>verb</option><option>adjective</option>
+                <option>adverb</option><option>preposition</option><option>phrase</option>
+              </select>
+              <textarea class="field" name="example" rows="2" placeholder="Example sentence..."></textarea>
+              <div class="btn-row">
+                <button class="btn green" type="submit">Save</button>
+                <button class="btn ghost" type="button" id="wordCancel">Clear</button>
+              </div>
+            </form>
+          </div>
+
+          <div>
+            <div class="toolbar">
+              <input class="field search" id="wordSearch" placeholder="🔍 search words...">
+              <div class="chips" id="levelChips">
+                <button class="chip active" data-level="">all</button>
+                <button class="chip" data-level="easy">easy</button>
+                <button class="chip" data-level="medium">medium</button>
+                <button class="chip" data-level="hard">hard</button>
+              </div>
+            </div>
+            <div class="word-list" id="wordList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRAMMAR -->
+      <section class="view" id="view-grammar">
+        <div class="grid-words">
+          <div class="spiral-card orange-top">
+            <div class="rings"></div>
+            <div class="spiral-tabs"><span>Rule</span><span>Form</span><span>Ex.</span></div>
+            <h2 class="card-title" id="grammarFormTitle">New Grammar</h2>
+            <form id="grammarForm" autocomplete="off">
+              <input type="hidden" name="id">
+              <input class="field" name="title" placeholder="TOPIC e.g. Past Simple" required>
+              <input class="field" name="structure" placeholder="STRUCTURE e.g. S + V2" required>
+              <textarea class="field" name="explanation" rows="3" placeholder="อธิบายการใช้" required></textarea>
+              <textarea class="field" name="example" rows="2" placeholder="Example sentence..."></textarea>
+              <div class="radio-row">
+                <label><input type="radio" name="level" value="easy" checked> easy</label>
+                <label><input type="radio" name="level" value="medium"> medium</label>
+                <label><input type="radio" name="level" value="hard"> hard</label>
+              </div>
+              <div class="btn-row">
+                <button class="btn green" type="submit">Save</button>
+                <button class="btn ghost" type="button" id="grammarCancel">Clear</button>
+              </div>
+            </form>
+          </div>
+          <div>
+            <div class="toolbar">
+              <input class="field search" id="grammarSearch" placeholder="🔍 search grammar...">
+            </div>
+            <div class="grammar-list" id="grammarList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLASHCARDS -->
+      <section class="view" id="view-flash">
+        <h3 class="hand-title">flip it, say it, own it ✨</h3>
+        <div class="flash-wrap">
+          <div class="flashcard" id="flashcard">
+            <div class="face front"><div class="fc-word" id="fcWord">…</div><div class="fc-pos" id="fcPos"></div><small>click to flip</small></div>
+            <div class="face back"><div class="fc-mean" id="fcMean"></div><div class="fc-ex" id="fcEx"></div></div>
+          </div>
+        </div>
+        <div class="btn-row center">
+          <button class="btn ghost" id="fcPrev">◀◀</button>
+          <button class="btn navy" id="fcLearned">✔ learned</button>
+          <button class="btn ghost" id="fcNext">▶▶</button>
+        </div>
+        <p class="center hand" id="fcCounter"></p>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="view" id="view-quiz">
+        <div class="score-tiles">
+          <div class="tile"><span id="qScore">0</span><small>score</small></div>
+          <div class="tile"><span id="qNum">0</span><small>question</small></div>
+          <div class="tile"><span id="qTotal">5</span><small>total</small></div>
+        </div>
+        <div class="quiz-card" id="quizCard">
+          <p class="hand">ทายความหมายคำศัพท์ IELTS 5 ข้อ</p>
+          <button class="btn navy" id="quizStart">Start quiz</button>
+        </div>
+      </section>
+
+      <div class="footer-line">VOCAB – GRAMMAR – FLASHCARDS – QUIZ – REPEAT</div>
+    </main>
+
+    <!-- แท็บด้านขวา -->
+    <nav class="side-tabs" id="sideTabs">
+      <button class="tab t-beige active" data-view="home">HOME</button>
+      <button class="tab t-light" data-view="words">WORDS</button>
+      <button class="tab t-light" data-view="grammar">GRAMMAR</button>
+      <button class="tab t-teal" data-view="flash">FLASH</button>
+      <button class="tab t-teal" data-view="quiz">QUIZ</button>
+    </nav>
+
+    <!-- แท็บด้านล่าง -->
+    <nav class="bottom-tabs" id="bottomTabs">
+      <button class="btab b-teal active" data-paper="dotted">DOT</button>
+      <button class="btab b-light" data-paper="grid">GRID</button>
+      <button class="btab b-mid" data-paper="blank">BLANK</button>
+    </nav>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>

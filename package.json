@@ -1,0 +1,19 @@
+{
+  "name": "english-planner",
+  "version": "1.0.0",
+  "description": "เว็บฝึกภาษาอังกฤษ (คำศัพท์ + ไวยากรณ์) ธีมสมุดแพลนเนอร์ — Express + SQLite",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "node --watch --no-warnings=ExperimentalWarning server/index.js",
+    "start": "node --no-warnings=ExperimentalWarning server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}
